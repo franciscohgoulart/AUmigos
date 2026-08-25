@@ -1,4 +1,19 @@
 CREATE DATABASE aumigos;
 USE aumigos;
 
-CREATE TABLE cliente 
+CREATE TABLE CLIENTE (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR (100) NOT NULL,
+    email  VARCHAR (100)
+);
+
+CREATE TABLE CACHORRO (
+
+   id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(200) NOT NULL,
+    especie VARCHAR(200) NOT NULL,
+    idade INT NOT NULL,
+    id_cliente INT,
+    FOREIGN KEY (id_cliente) REFERENCES CLIENTE(id)
+    
+);
