@@ -1,12 +1,12 @@
 <?php
 
-require_once "../infra/conexao.php";
+require_once "infra/conexao.php";
 
 // Busca todos os clientes
-$clientes = $conexao->query("SELECT id, nome, telefone, email FROM CLIENTE ORDER BY nome");
+$cliente = $conexao->query("SELECT id, nome, telefone, email FROM CLIENTE ORDER BY nome");
 
 // Busca todos os animais
-$animais = $conexao->query("SELECT id, nome, especie, idade, id_cliente FROM ANIMAL ORDER BY nome");
+$cachorro = $conexao->query("SELECT id, nome, especie, idade, id_cliente FROM cachorro ORDER BY nome");
 // Lista de clientes para popular o <select> do formulário de animal
 
 $clientes_select = $conexao->query("SELECT id, nome FROM CLIENTE ORDER BY nome");
@@ -37,7 +37,8 @@ $clientes_select = $conexao->query("SELECT id, nome FROM CLIENTE ORDER BY nome")
             <th>E-mail</th>
             <th>Ações</th>
         </tr>
-        <?php while ($cliente = $clientes->fetch_assoc()): ?>
+
+        <?php while ($cliente = $cliente->fetch_assoc()): ?>
         <tr>
             <td><?= htmlspecialchars($cliente["id"]) ?></td>
             <td><?= htmlspecialchars($cliente["nome"]) ?></td>
@@ -79,17 +80,17 @@ $clientes_select = $conexao->query("SELECT id, nome FROM CLIENTE ORDER BY nome")
             <th>Responsável</th>
             <th>Ações</th>
         </tr>
-        <?php while ($animal = $animais->fetch_assoc()): ?>
+        <?php while ($c = $cachorro->fetch_assoc()): ?>
         <tr>
-            <td><?= htmlspecialchars($animal["id"]) ?></td>
-            <td><?= htmlspecialchars($animal["nome"]) ?></td>
-            <td><?= htmlspecialchars($animal["especie"]) ?></td>
-            <td><?= htmlspecialchars($animal["idade"]) ?></td>
-            <td><?= $animal["responsavel"] ? htmlspecialchars($animal["responsavel"]) : "<em>sem responsável</em>" ?></td>
+            <td><?= htmlspecialchars($cachorro["id"]) ?></td>
+            <td><?= htmlspecialchars($cachorro["nome"]) ?></td>
+            <td><?= htmlspecialchars($cachorro["especie"]) ?></td>
+            <td><?= htmlspecialchars($cachorro["idade"]) ?></td>
+            <td><?= $cachorro["responsavel"] ? htmlspecialchars($cachorro["responsavel"]) : "<em>sem responsável</em>" ?></td>
             <td>
-                <a href="paginas/editar_animal.php?id=<?= $animal["id"] ?>">Editar</a>
+                <a href="paginas/editar_animal.php?id=<?= $cachorro["id"] ?>">Editar</a>
                 |
-                <a href="paginas/excluir_animal.php?id=<?= $animal["id"] ?>"
+                <a href="paginas/excluir_animal.php?id=<?= $cachorro["id"] ?>"
                    onclick="return confirm('Excluir este animal?')">Excluir</a>
             </td>
         </tr>
