@@ -1,7 +1,7 @@
 <?php
 require_once "../infra/conexao.php";
 
-$cliente = $conexao->query("SELECT * FROM cliente");
+$cliente = $conexao->query("SELECT * FROM CLIENTE");
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +14,7 @@ $cliente = $conexao->query("SELECT * FROM cliente");
 <body>
     <h2>Clientes Cadastrados</h2>
     <a href="../index.php">Voltar</a>
+
     <table border="1">
         <tr>
             <th>ID</th><th>Nome</th><th>E-mail</th><th>Ações</th>
@@ -21,15 +22,15 @@ $cliente = $conexao->query("SELECT * FROM cliente");
         <?php while ($u = $cliente->fetch_assoc()): ?>
             <tr>
                 <td><?php echo $u['id']; ?></td>
-                <td><?php echo $u['nome']; ?></td>
-                <td><?php echo $u['email']; ?></td>
+                <td><?php echo htmlspecialchars($u['nome']); ?></td>
+                <td><?php echo htmlspecialchars($u['email']); ?></td>
                 <td>
-                     <a href="listar_animal.php?cliente_id=<?php echo $u['id']; ?>">Ver animais</a>
-    <a href="editar_cliente.php?id=<?php echo $u['id']; ?>">Editar</a>
-    <a href="excluir_cliente.php?id=<?php echo $u['id']; ?>"
-       onclick="return confirm('Tem certeza que deseja excluir este cliente?')">
-        Excluir
-    </a>
+                    <a href="listar_animal.php?cliente_id=<?php echo $u['id']; ?>">Ver animais</a>
+                    <a href="editar_cliente.php?id=<?php echo $u['id']; ?>">Editar</a>
+                    <a href="excluir_cliente.php?id=<?php echo $u['id']; ?>"
+                       onclick="return confirm('Tem certeza que deseja excluir este cliente?')">
+                        Excluir
+                    </a>
                 </td>
             </tr>
         <?php endwhile; ?>

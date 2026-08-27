@@ -38,7 +38,6 @@ $cliente = mysqli_query($conexao, "SELECT * FROM CLIENTE ORDER BY id DESC");
 
         <nav>
             <center>
-            <a href="index.php">Início</a> |
             <a href="public/listar_cliente.php">Gerenciar Clientes</a> |
             <a href="public/listar_animal.php">Gerenciar Animais</a>
             </center>
