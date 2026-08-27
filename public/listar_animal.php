@@ -2,13 +2,13 @@
 require_once "../infra/conexao.php";
 
 $cliente = $conexao->query(" SELECT 
-        ANIMAL.id,
-        ANIMAL.nome,
-        ANIMAL.especie,
-        ANIMAL.idade,
+        cachorro.id,
+        cachorro.nome,
+        cachorro.especie,
+        cachorro.idade,
         CLIENTE.nome AS cliente_nome
-    FROM ANIMAL
-    INNER JOIN CLIENTE ON ANIMAL.cliente_id = CLIENTE.id");
+    FROM cachorro
+    INNER JOIN CLIENTE ON cachorro.id_cliente = CLIENTE.id");
 ?>
 
 <!DOCTYPE html>
@@ -33,8 +33,8 @@ $cliente = $conexao->query(" SELECT
                 <td><?php echo $u['idade']; ?></td>
                 <td><?php echo $u['cliente_nome']; ?></td>
                  <td>
-    <a href="editar_animais.php?id=<?php echo $u['id']; ?>">Editar</a>
-    <a href="excluir_animais.php?id=<?php echo $u['id']; ?>"
+    <a href="editar_animal.php?id=<?php echo $u['id']; ?>">Editar</a>
+    <a href="excluir_animal.php?id=<?php echo $u['id']; ?>"
        onclick="return confirm('Tem certeza que deseja excluir este animal?')">
         Excluir
     </a>

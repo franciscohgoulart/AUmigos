@@ -17,18 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["cadastrar_cliente"]))
 
 $cliente = mysqli_query($conexao, "SELECT * FROM CLIENTE ORDER BY id DESC");
 
-$cachorro = mysqli_query($conexao, "
-    SELECT 
-        ANIMAL.id,
-        ANIMAL.nome,
-        ANIMAL.especie,
-        ANIMAL.idade,
-        CLIENTE.nome AS cliente_nome
-    FROM ANIMAL
-    INNER JOIN CLIENTE ON ANIMAL.cliente_id = CLIENTE.id
-    ORDER BY ANIMAL.id DESC
-");
-
 ?>
 
 <!DOCTYPE html>
@@ -51,8 +39,8 @@ $cachorro = mysqli_query($conexao, "
         <nav>
             <center>
             <a href="index.php">Início</a> |
-            <a href="public/listar_clientes.php">Gerenciar Clientes</a> |
-            <a href="public/listar_animais.php">Gerenciar Animais</a>
+            <a href="public/listar_cliente.php">Gerenciar Clientes</a> |
+            <a href="public/listar_animal.php">Gerenciar Animais</a>
             </center>
         </nav>
 
@@ -90,7 +78,7 @@ $cachorro = mysqli_query($conexao, "
             <h2>Cadastrar Animal</h2>
         </center>
 
-        <form action="public/cadastrar_animais.php" method="POST">
+        <form action="public/cadastrar_animal.php" method="POST">
 
             <label for="nome_animal">Nome:</label>
             <input type="text" id="nome_animal" name="nome" required>
@@ -113,10 +101,10 @@ $cachorro = mysqli_query($conexao, "
 
                 <option value="">Selecione um cliente</option>
 
-                <?php while ($cliente = mysqli_fetch_assoc($clientes)) { ?>
+                <?php while ($cli = mysqli_fetch_assoc($cliente)) { ?>
 
-                    <option value="<?php echo $cliente["id"]; ?>">
-                        <?php echo htmlspecialchars($cliente["nome"]); ?>
+                    <option value="<?php echo $cli["id"]; ?>">
+                        <?php echo htmlspecialchars($cli["nome"]); ?>
                     </option>
 
                 <?php } ?>
@@ -130,54 +118,6 @@ $cachorro = mysqli_query($conexao, "
             </button>
 
         </form>
-
-    
-
-        <center>
-            <h2>Animais Cadastrados</h2>
-        </center>
-
-        <table>
-
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Espécie</th>
-                <th>Idade</th>
-                <th>Responsável</th>
-            </tr>
-
-            <?php while ($animal = mysqli_fetch_assoc($animais)) { ?>
-
-                <tr>
-
-                    <td>
-                        <?php echo $animal["id"]; ?>
-                    </td>
-
-                    <td>
-                        <?php echo htmlspecialchars($animal["nome"]); ?>
-                    </td>
-
-                    <td>
-                        <?php echo htmlspecialchars($animal["especie"]); ?>
-                    </td>
-
-                    <td>
-                        <?php echo $animal["idade"]; ?> anos
-                    </td>
-
-                    <td>
-                        <?php echo htmlspecialchars($animal["cliente_nome"]); ?>
-                    </td>
-
-                
-
-                </tr>
-
-            <?php } ?>
-
-        </table>
 
     </main>
 

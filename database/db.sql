@@ -4,8 +4,8 @@ USE aumigos;
 CREATE TABLE CLIENTE (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR (100) NOT NULL,
-    email  VARCHAR (100)
-    telefone VARCHAR(20);
+    email  VARCHAR (100),
+    telefone VARCHAR(20)
 );
 
 CREATE TABLE CACHORRO (
@@ -18,3 +18,6 @@ CREATE TABLE CACHORRO (
     FOREIGN KEY (id_cliente) REFERENCES CLIENTE(id)
 
 );
+
+
+

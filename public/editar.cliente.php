@@ -65,7 +65,7 @@ if (!$cliente) {
 
     <br>
 
-    <a href="listar_clientes.php">Voltar</a>
+    <a href="listar_cliente.php">Voltar</a>
 
 </body>
 

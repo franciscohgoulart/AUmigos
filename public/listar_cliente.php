@@ -24,9 +24,9 @@ $cliente = $conexao->query("SELECT * FROM cliente");
                 <td><?php echo $u['nome']; ?></td>
                 <td><?php echo $u['email']; ?></td>
                 <td>
-                     <a href="listar_animais.php?cliente_id=<?php echo $u['id']; ?>">Ver animais</a>
-    <a href="editar_clientes.php?id=<?php echo $u['id']; ?>">Editar</a>
-    <a href="excluir_clientes.php?id=<?php echo $u['id']; ?>"
+                     <a href="listar_animal.php?cliente_id=<?php echo $u['id']; ?>">Ver animais</a>
+    <a href="editar_cliente.php?id=<?php echo $u['id']; ?>">Editar</a>
+    <a href="excluir_cliente.php?id=<?php echo $u['id']; ?>"
        onclick="return confirm('Tem certeza que deseja excluir este cliente?')">
         Excluir
     </a>
